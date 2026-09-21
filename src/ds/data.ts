@@ -148,8 +148,8 @@ export const CFData: any = {
   },
   // Sums are what the DB views return; the panel only displays them.
   totals(list: any, field: any) {
-    const out = {};
-    list.forEach(r => {
+    const out: Record<string, number> = {};
+    list.forEach((r: any) => {
       const v = typeof field === "function" ? field(r) : r[field];
       out[r.cur] = (out[r.cur] || 0) + v;
     });
