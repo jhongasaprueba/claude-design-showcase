@@ -1,0 +1,21 @@
+:root{
+--font-core:"Urbanist","Urbanist Local",-apple-system,"Segoe UI",sans-serif;
+
+--weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;
+
+/* scale — anchored on the source sheet: Heading 1 = 36 Semibold, Title = 24, Body = 12/14 */
+--text-display-size:56px;--text-display-line:1.02;--text-display-weight:600;--text-display-tracking:-0.03em;
+--text-figure-size:40px;--text-figure-line:1.08;--text-figure-weight:600;--text-figure-tracking:-0.025em;
+--text-h1-size:36px;--text-h1-line:1.12;--text-h1-weight:600;--text-h1-tracking:-0.02em;
+--text-h2-size:28px;--text-h2-line:1.18;--text-h2-weight:600;--text-h2-tracking:-0.015em;
+--text-title-size:24px;--text-title-line:1.25;--text-title-weight:600;--text-title-tracking:-0.01em;
+--text-h3-size:18px;--text-h3-line:1.35;--text-h3-weight:600;--text-h3-tracking:-0.005em;
+--text-body-size:15px;--text-body-line:1.55;--text-body-weight:400;
+--text-body-sm-size:13px;--text-body-sm-line:1.5;--text-body-sm-weight:400;
+--text-dense-size:12px;--text-dense-line:1.45;--text-dense-weight:400;
+--text-label-size:12px;--text-label-line:1.2;--text-label-weight:500;--text-label-tracking:0.04em;
+--text-overline-size:11px;--text-overline-line:1.2;--text-overline-weight:600;--text-overline-tracking:0.09em;
+
+/* numeric display — every screen in this product is a number first */
+--figure-features:"tnum" 1,"ss01" 1; /* @kind other */
+}

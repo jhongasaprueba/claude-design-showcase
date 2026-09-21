@@ -1,0 +1,14 @@
+:root{
+/* shadows are tinted with the brand green, never neutral black */
+--shadow-none:none;
+--shadow-hairline:0 0 0 1px var(--border-subtle);
+--shadow-card:0 1px 2px rgba(8,41,35,.04),0 8px 24px rgba(8,41,35,.05);
+--shadow-raised:0 2px 4px rgba(8,41,35,.05),0 16px 40px rgba(8,41,35,.08);
+--shadow-overlay:0 24px 64px rgba(8,41,35,.16);
+--shadow-inset-top:inset 0 1px 0 rgba(255,255,255,.6);
+--shadow-accent:0 8px 24px rgba(149,206,98,.28);
+/* the recurring "bloom": a soft radial tint behind a figure */
+--bloom-lime:radial-gradient(120% 90% at 50% 0%,var(--lime-100) 0%,rgba(237,249,225,0) 72%);
+--bloom-green:radial-gradient(120% 90% at 50% 0%,var(--green-50) 0%,rgba(234,243,241,0) 72%);
+--scrim-page:linear-gradient(180deg,var(--cream-50) 0%,rgba(251,253,246,0) 100%);
+}

@@ -1,0 +1,59 @@
+:root{
+/* ---- base ramp: brand green (from the source brand sheet, #11564D) ---- */
+--green-900:#082923;--green-800:#0B3A34;--green-700:#11564D;--green-600:#1A6C61;--green-500:#2A857A;--green-300:#8FBDB6;--green-100:#D6E7E4;--green-50:#EAF3F1;
+/* ---- base ramp: lime accent (from the source brand sheet, #B2E381) ---- */
+--lime-600:#7BB447;--lime-500:#95CE62;--lime-400:#B2E381;--lime-300:#C9EBA5;--lime-200:#DEF4C9;--lime-100:#EDF9E1;
+/* ---- base ramp: cream / paper ---- */
+--cream-50:#FBFDF6;--cream-100:#F4F9EA;--cream-200:#E9F1DA;--cream-300:#DBE6C8;
+/* ---- base ramp: ink & neutrals (#191919 black from the source sheet) ---- */
+--ink-900:#191919;--ink-800:#262B29;--ink-700:#3D4340;--ink-600:#5A615D;--ink-500:#767E79;--ink-400:#9AA19C;--ink-300:#BFC5C0;--ink-200:#DDE1DB;--ink-100:#EDF0EA;
+--white:#FFFFFF;
+/* ---- base ramp: money signals ---- */
+--clay-700:#8F3320;--clay-600:#B3402A;--clay-300:#E9B8AC;--clay-100:#FAEAE5;
+--amber-600:#C97A18;--amber-500:#E9922F;--amber-200:#FBE3C2;--amber-100:#FDF3E5;
+
+/* ================= semantic aliases ================= */
+/* surfaces */
+--surface-page:var(--cream-50);
+--surface-card:var(--white);
+--surface-sunken:var(--cream-100);
+--surface-inverse:var(--green-700);
+--surface-ink:var(--ink-900);
+--surface-accent:var(--lime-400);
+--surface-accent-soft:var(--lime-100);
+--surface-hover:var(--cream-100);
+--surface-selected:var(--green-50);
+/* text */
+--text-body:var(--ink-800);
+--text-heading:var(--ink-900);
+--text-muted:var(--ink-500);
+--text-faint:var(--ink-400);
+--text-brand:var(--green-700);
+--text-on-inverse:var(--cream-50);
+--text-on-accent:var(--green-900);
+/* borders */
+--border-subtle:var(--ink-100);
+--border-default:var(--ink-200);
+--border-strong:var(--ink-300);
+--border-brand:var(--green-700);
+--border-accent:var(--lime-400);
+/* money semantics — the four numbers this product exists to show */
+--money-cash:var(--green-700);        /* plata disponible / cash on hand */
+--money-receivable:var(--lime-600);   /* por cobrar / owed to you */
+--money-payable:var(--clay-600);      /* por pagar / you owe */
+--money-profit:var(--green-700);      /* ganancia / earnings */
+--money-cash-bg:var(--green-50);
+--money-receivable-bg:var(--lime-100);
+--money-payable-bg:var(--clay-100);
+/* state */
+--state-positive:var(--lime-600);
+--state-positive-bg:var(--lime-100);
+--state-negative:var(--clay-600);
+--state-negative-bg:var(--clay-100);
+--state-warning:var(--amber-500);
+--state-warning-bg:var(--amber-100);
+--state-neutral:var(--ink-500);
+--state-neutral-bg:var(--ink-100);
+/* focus */
+--focus-ring:0 0 0 3px var(--lime-300);
+}
