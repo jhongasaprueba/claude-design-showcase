@@ -1,0 +1,15 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-core);font-size:var(--text-body-size);line-height:var(--text-body-line);font-weight:var(--weight-regular);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{margin:0;color:var(--text-heading);font-weight:var(--weight-semibold);letter-spacing:-0.02em;text-wrap:pretty}
+h1{font-size:var(--text-h1-size);line-height:var(--text-h1-line)}
+h2{font-size:var(--text-h2-size);line-height:var(--text-h2-line)}
+h3{font-size:var(--text-h3-size);line-height:var(--text-h3-line)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-brand);text-decoration:none;border-bottom:1px solid var(--green-100);transition:var(--transition-control)}
+a:hover{color:var(--green-800);border-bottom-color:var(--green-700)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+table{border-collapse:collapse}
+.cf-figure{font-variant-numeric:tabular-nums;font-feature-settings:var(--figure-features);letter-spacing:-0.02em}
+.cf-overline{font-size:var(--text-overline-size);line-height:var(--text-overline-line);font-weight:var(--text-overline-weight);letter-spacing:var(--text-overline-tracking);text-transform:uppercase;color:var(--text-muted)}

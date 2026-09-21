@@ -1,0 +1,16 @@
+:root{
+--space-0:0;--space-1:2px;--space-2:4px;--space-3:8px;--space-4:12px;--space-5:16px;--space-6:20px;--space-7:24px;--space-8:32px;--space-9:40px;--space-10:48px;--space-11:64px;--space-12:80px;
+/* layout */
+--gutter-card:20px;      /* padding inside a card, mobile */
+--gutter-card-lg:28px;   /* padding inside a card, desktop */
+--gutter-page:16px;      /* page edge, mobile */
+--gutter-page-lg:32px;   /* page edge, desktop */
+--grid-gap:16px;
+--row-height:56px;       /* table / list row */
+--row-height-dense:44px;
+--control-height-sm:32px;--control-height:40px;--control-height-lg:48px;
+--tap-min:44px;
+--sidenav-width:236px;
+--topbar-height:64px;
+--content-max:1280px;
+}
