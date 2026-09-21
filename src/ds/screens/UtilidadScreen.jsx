@@ -43,7 +43,7 @@ export function UtilidadScreen({ lang, screenState }) {
       </Card>
 
       {!empty ? (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "var(--grid-gap)", marginTop: "var(--grid-gap)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.55fr) minmax(280px, 1fr)", gap: "var(--grid-gap)", marginTop: "var(--grid-gap)" }}>
           <Card title={t.mesAMes} subtitle={t.mesAMesSub} padding="md">
             <DataTable dense rows={meses} columns={[
               { key: "label", header: t.cols2.mes, render: r => <span style={{ fontWeight: "var(--weight-medium)", color: "var(--text-heading)", textTransform: "capitalize" }}>{r.label}</span> },
