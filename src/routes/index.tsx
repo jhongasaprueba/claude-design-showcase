@@ -39,10 +39,30 @@ function PanelPage() {
   const [lang, setLang] = useState("es");
   const [screenState, setScreenState] = useState(0);
   const [clienteId, setClienteId] = useState(1);
+  const [, setTick] = useState(0);
   const openCliente = (id: number) => {
     setClienteId(id);
     setView("cliente");
   };
+
+  useEffect(() => {
+    if (!authed) return;
+    let alive = true;
+    loadLive()
+      .then((live) => {
+        if (!alive) return;
+        Object.assign(CFData, live);
+        setScreenState(live.isEmpty ? 1 : 0);
+        setTick((n) => n + 1);
+      })
+      .catch((err) => {
+        console.error("No se pudo leer la base de datos", err);
+        if (alive) setScreenState(2);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [authed]);
 
   if (!authed) {
     return <LoginScreen lang={lang} setLang={setLang} onEnter={() => setAuthed(true)} />;
