@@ -208,6 +208,5 @@ export async function loadLive(): Promise<CFLive> {
     canales,
     isEmpty,
     clientesCount: clientesTercero.length,
-    clientesCount: clientesTercero.length,
   };
 }
