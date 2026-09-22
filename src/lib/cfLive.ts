@@ -29,6 +29,7 @@ export type CFLive = {
   utilidadMensual: any[];
   canales: any[];
   isEmpty: boolean;
+  clientesCount: number;
 };
 
 async function grab(table: string, select = "*") {
@@ -207,5 +208,6 @@ export async function loadLive(): Promise<CFLive> {
     canales,
     isEmpty,
     clientesCount: clientesTercero.length,
-  } as CFLive;
+    clientesCount: clientesTercero.length,
+  };
 }
