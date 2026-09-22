@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { AppShell } from "@/ds/screens/AppShell.jsx";
 import { LoginScreen } from "@/ds/screens/LoginScreen.jsx";
@@ -8,6 +8,8 @@ import { DeboScreen } from "@/ds/screens/DeboScreen.jsx";
 import { CobroScreen } from "@/ds/screens/CobroScreen.jsx";
 import { ClienteScreen } from "@/ds/screens/ClienteScreen.jsx";
 import { UtilidadScreen } from "@/ds/screens/UtilidadScreen.jsx";
+import { CFData } from "@/ds/data";
+import { loadLive } from "@/lib/cfLive";
 
 export const Route = createFileRoute("/")({
   head: () => ({
