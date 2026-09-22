@@ -29,6 +29,7 @@ export type CFLive = {
   utilidadMensual: any[];
   canales: any[];
   isEmpty: boolean;
+  lastUpdate: { es: string; en: string };
   clientesCount: number;
 };
 
@@ -78,9 +79,10 @@ export async function loadLive(): Promise<CFLive> {
 
   const cxcRows = cxcMaestro.map((c) => {
     const list = abonosPorCxc.get(c.id) || [];
-    const abonado = list.reduce((s, a) => s + Number(a.monto || 0), 0);
+    const pagado = list.reduce((s, a) => s + Number(a.monto || 0), 0);
     const total = Number(c.monto_total || 0);
-    const estado = abonado <= 0 ? "pend" : abonado >= total ? "pagado" : "parcial";
+    const estado = pagado <= 0 ? "pend" : pagado >= total ? "pagado" : "parcial";
+    const abonado = Math.min(pagado, total);
     return {
       id: c.id,
       cliente: nombre.get(c.cliente_id) || c.codigo || "—",
@@ -207,6 +209,10 @@ export async function loadLive(): Promise<CFLive> {
     utilidadMensual,
     canales,
     isEmpty,
+    lastUpdate: {
+      es: "Datos al " + new Date().toLocaleString("es-CO", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }),
+      en: "Data as of " + new Date().toLocaleString("en-US", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }),
+    },
     clientesCount: clientesTercero.length,
   };
 }
