@@ -48,19 +48,42 @@ function PanelPage() {
   useEffect(() => {
     if (!authed) return;
     let alive = true;
-    loadLive()
-      .then((live) => {
-        if (!alive) return;
-        Object.assign(CFData, live);
-        setScreenState(live.isEmpty ? 1 : 0);
-        setTick((n) => n + 1);
-      })
-      .catch((err) => {
-        console.error("No se pudo leer la base de datos", err);
-        if (alive) setScreenState(2);
-      });
+    let inFlight = false;
+    const load = () => {
+      if (inFlight) return;
+      inFlight = true;
+      loadLive()
+        .then((live) => {
+          if (!alive) return;
+          Object.assign(CFData, live);
+          setScreenState(live.isEmpty ? 1 : 0);
+          setTick((n) => n + 1);
+        })
+        .catch((err) => {
+          console.error("No se pudo leer la base de datos", err);
+          // Si ya había datos en pantalla, no los tapamos por un fallo puntual
+          // de red: solo pasamos al estado "sin conexión" si es la carga inicial.
+          if (alive && !CFData.loaded) setScreenState(2);
+        })
+        .finally(() => {
+          inFlight = false;
+          if (alive) CFData.loaded = true;
+        });
+    };
+    load();
+    // Refresco automático cada 60 s mientras la pestaña esté visible,
+    // y también al volver a la pestaña después de estar en otra.
+    const iv = window.setInterval(() => {
+      if (document.visibilityState === "visible") load();
+    }, 60000);
+    const onVis = () => {
+      if (document.visibilityState === "visible") load();
+    };
+    document.addEventListener("visibilitychange", onVis);
     return () => {
       alive = false;
+      window.clearInterval(iv);
+      document.removeEventListener("visibilitychange", onVis);
     };
   }, [authed]);
 
