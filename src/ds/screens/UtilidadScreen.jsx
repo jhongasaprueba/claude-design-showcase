@@ -59,7 +59,7 @@ export function UtilidadScreen({ lang, screenState }) {
           </Card>
           <Card title={t.porCanal} subtitle={t.porCanalSub}>
             <DonutChart size={158} thickness={18} centerLabel={t.cols2.ingresos}
-              centerValue={"$" + (272000000).toLocaleString("es-CO")}
+              centerValue={"$" + Math.round(meses.reduce((s, m) => s + m.ingresos, 0)).toLocaleString("es-CO")}
               segments={D.canales.map(c => ({ label: lang === "es" ? c.label : c.labelEn, value: c.value }))} />
           </Card>
         </div>
