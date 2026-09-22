@@ -10,6 +10,8 @@ import { ClienteScreen } from "@/ds/screens/ClienteScreen.jsx";
 import { UtilidadScreen } from "@/ds/screens/UtilidadScreen.jsx";
 import { CFData } from "@/ds/data";
 import { loadLive } from "@/lib/cfLive";
+import { subscribeCFChanges } from "@/lib/cfRealtime";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,21 +73,26 @@ function PanelPage() {
         });
     };
     load();
-    // Refresco automático cada 60 s mientras la pestaña esté visible,
-    // y también al volver a la pestaña después de estar en otra.
+    // Tiempo real: cualquier alta, cambio o borrado en las tablas del bot
+    // actualiza el panel al instante, sin recargar la página.
+    const unsubscribe = subscribeCFChanges(load);
+    // Red de seguridad por si el tiempo real no está habilitado en alguna
+    // tabla: relectura cada 5 minutos y al volver a la pestaña.
     const iv = window.setInterval(() => {
       if (document.visibilityState === "visible") load();
-    }, 60000);
+    }, 300000);
     const onVis = () => {
       if (document.visibilityState === "visible") load();
     };
     document.addEventListener("visibilitychange", onVis);
     return () => {
       alive = false;
+      unsubscribe();
       window.clearInterval(iv);
       document.removeEventListener("visibilitychange", onVis);
     };
   }, [authed]);
+
 
   if (!authed) {
     return <LoginScreen lang={lang} setLang={setLang} onEnter={() => setAuthed(true)} />;
