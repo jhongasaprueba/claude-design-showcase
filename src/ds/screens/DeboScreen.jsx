@@ -25,7 +25,7 @@ export function DeboScreen({ lang, screenState }) {
   const totals = D.totals(rows, "monto");
   return (
     <ScreenFrame lang={lang} screenState={screenState}
-      title={t.debo_title} subtitle={t.debo_sub} section={t.nav_debo}
+      title={t.debo_title} subtitle={t.debo_sub} section={t.debo_title}
       emptyIcon={<Icon name="check" size={22} />} emptyTitle={t.empty_debo}
       emptyBody={lang === "es" ? "Cuando el bot registre una compra a crédito o un pago en tránsito, aparecerá acá." : "Credit purchases and payments in transit recorded by the bot show up here."}>
       <TotalsRow totals={totals} role="payable" label={t.debe} />
