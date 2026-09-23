@@ -25,6 +25,7 @@ export type CFLive = {
   cxp: any[];
   cxc: any[];
   clientes: Record<string, any>;
+  proveedores: Record<string, any>;
   utilidad: number;
   utilidadMensual: any[];
   canales: any[];
@@ -245,6 +246,7 @@ export async function loadLive(): Promise<CFLive> {
     cxp: cxpRows,
     cxc: cxcRows,
     clientes,
+    proveedores,
     utilidad,
     utilidadMensual,
     canales,
