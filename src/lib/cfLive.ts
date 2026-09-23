@@ -138,10 +138,12 @@ export async function loadLive(): Promise<CFLive> {
 
   // ---------- Lo que debo ----------
   const abonosPorCxp = new Map<number, any[]>();
+  const pagadoPorCxp = new Map<number, number>();
   abonosProv.forEach((a) => {
     const list = abonosPorCxp.get(a.cxp_id) || [];
     list.push(a);
     abonosPorCxp.set(a.cxp_id, list);
+    pagadoPorCxp.set(a.cxp_id, (pagadoPorCxp.get(a.cxp_id) || 0) + Number(a.monto || 0));
   });
   const cxpRows = cxp
     .map((c) => {
