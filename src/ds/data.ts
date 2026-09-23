@@ -152,6 +152,34 @@ export const CFData: any = {
       ]
     }
   },
+  // Per-debt detail (CxP), keyed by the CxP row id.
+  proveedores: {
+    1: {
+      tercero: "Proveedor Andrés M.", tipo: "prov", cur: "USDT", total: 7200.00, ultimoAbono: "04 sep",
+      movs: [
+        { id: "c1", concepto: "Deuda PRV-011", conceptoEn: "Debt PRV-011", fecha: "02 sep", monto: 7200.00, tipo: "cargo" },
+        { id: "a1", concepto: "Abono ABP-031", conceptoEn: "Payment ABP-031", fecha: "04 sep", monto: 2000.00, tipo: "abono" }
+      ]
+    },
+    2: {
+      tercero: "Procesador PagoRed", tipo: "transito", cur: "COP", total: 6400000, ultimoAbono: "—",
+      movs: [
+        { id: "c2", concepto: "Deuda TRN-008", conceptoEn: "Debt TRN-008", fecha: "04 sep", monto: 6400000, tipo: "cargo" }
+      ]
+    },
+    3: {
+      tercero: "Proveedor Lina T.", tipo: "prov", cur: "USDT", total: 1850.40, ultimoAbono: "—",
+      movs: [
+        { id: "c3", concepto: "Deuda PRV-012", conceptoEn: "Debt PRV-012", fecha: "05 sep", monto: 1850.40, tipo: "cargo" }
+      ]
+    },
+    4: {
+      tercero: "Procesador Kuvo", tipo: "transito", cur: "COP", total: 2100000, ultimoAbono: "—",
+      movs: [
+        { id: "c4", concepto: "Deuda TRN-009", conceptoEn: "Debt TRN-009", fecha: "06 sep", monto: 2100000, tipo: "cargo" }
+      ]
+    }
+  },
   // Sums are what the DB views return; the panel only displays them.
   totals(list: any, field: any) {
     const out: Record<string, number> = {};
