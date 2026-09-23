@@ -4,9 +4,9 @@ export const CFData: any = {
   t: {
     es: {
       brandSub: "PANEL PRIVADO", readonly: "Solo lectura · todo se registra en el bot",
-      nav_saldos: "Saldos de caja", nav_debo: "Lo que debo", nav_cobro: "Lo que me deben", nav_utilidad: "Utilidad",
+      nav_saldos: "Saldos de caja", nav_debo: "Cuentas x Pagar", nav_cobro: "Cuentas x Cobrar", nav_utilidad: "Utilidad",
       saldos_title: "Saldos de caja", saldos_sub: "Lo que hay disponible en cada caja ahora mismo",
-      debo_title: "Lo que debo", debo_sub: "Obligaciones pendientes con proveedores y procesadores",
+      debo_title: "Cuentas por pagar", debo_sub: "Obligaciones pendientes con proveedores y procesadores",
       cobro_title: "Lo que me deben", cobro_sub: "Cuentas por cobrar y abonos recibidos",
       utilidad_title: "Utilidad acumulada", utilidad_sub: "Ganancia de todas las operaciones registradas",
       totalPor: "Total por moneda", pendiente: "Pendiente por cobrar", debe: "Total por pagar",
@@ -17,7 +17,7 @@ export const CFData: any = {
       histCliente: "Historial de facturas y abonos", resumenCliente: "Resumen del cliente",
       facturado: "Total facturado", promedioPago: "Paga en promedio", ultimoAbono: "Último abono",
       cols2: { concepto: "Concepto", fecha: "Fecha", mes: "Mes", ingresos: "Ingresos", gastos: "Gastos", utilidad: "Utilidad", canal: "Canal", parte: "Parte" },
-      cols: { tercero: "A quién le debo", tipo: "Tipo de deuda", cliente: "Cliente", moneda: "Moneda", monto: "Monto", desde: "Desde", total: "Monto total", abonado: "Abonado", saldo: "Saldo pendiente", estado: "Estado" },
+      cols: { tercero: "\u00a0 \u00a0 \u00a0 TERCERO", tipo: "Tipo de deuda", cliente: "Cliente", moneda: "Moneda", monto: "Monto", desde: "Desde", total: "Monto total", abonado: "Abonado", saldo: "Saldo pendiente", estado: "Estado" },
       states: { pend: "Pendiente", parcial: "Parcial", pagado: "Pagado" },
       types: { prov: "Proveedor USDT", transito: "Pago en tránsito" },
       empty_saldos_t: "Todavía no se ha registrado ningún movimiento",
@@ -28,7 +28,7 @@ export const CFData: any = {
       empty_utilidad_b: "La utilidad se calcula sola a partir de las operaciones guardadas.",
       error_t: "No se pudo cargar la información",
       error_b: "No hay conexión con la base de datos. Los números que viste antes pueden estar desactualizados — no los tomes como actuales.",
-      retry: "Reintentar", demo: "Estado de la pantalla", demoOpts: ["Con datos", "Sin datos", "Sin conexión"],
+      retry: "Reintentar", demo: "Estado de la pantalla", demoOpts: ["Con datos", "Pendiente", "Pendinte"],
       botNote: "Para registrar, corregir o confirmar un pago, escribile al bot.",
       login: { title: "Panel privado", body: "Ingresá la clave de 6 dígitos que te envía el bot por Telegram.", key: "Clave", enter: "Entrar", help: "¿No te llegó? Escribile /clave al bot.", pending: "Acceso pendiente de definir — ver readme" }
     },
