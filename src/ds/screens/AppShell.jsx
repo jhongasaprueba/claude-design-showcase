@@ -6,7 +6,7 @@ export function AppShell({ view, setView, lang, setLang, screenState, setScreenS
   const t = CFData.t[lang];
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "var(--surface-page)" }}>
-      <SideNav value={view === "cliente" ? "cobro" : view} onChange={setView}
+      <SideNav value={view === "cliente" ? "cobro" : view === "proveedor" ? "debo" : view} onChange={setView}
         brand={<Wordmark size={17} subtitle={t.brandSub} />}
         footer={
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "0 8px" }}>

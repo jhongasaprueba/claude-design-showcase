@@ -7,6 +7,7 @@ import { SaldosScreen } from "@/ds/screens/SaldosScreen.jsx";
 import { DeboScreen } from "@/ds/screens/DeboScreen.jsx";
 import { CobroScreen } from "@/ds/screens/CobroScreen.jsx";
 import { ClienteScreen } from "@/ds/screens/ClienteScreen.jsx";
+import { ProveedorScreen } from "@/ds/screens/ProveedorScreen.jsx";
 import { UtilidadScreen } from "@/ds/screens/UtilidadScreen.jsx";
 import { CFData } from "@/ds/data";
 import { loadLive } from "@/lib/cfLive";
@@ -41,10 +42,15 @@ function PanelPage() {
   const [lang, setLang] = useState("es");
   const [screenState, setScreenState] = useState(0);
   const [clienteId, setClienteId] = useState(1);
+  const [proveedorId, setProveedorId] = useState(1);
   const [, setTick] = useState(0);
   const openCliente = (id: number) => {
     setClienteId(id);
     setView("cliente");
+  };
+  const openProveedor = (id: number) => {
+    setProveedorId(id);
+    setView("proveedor");
   };
 
   useEffect(() => {
@@ -108,7 +114,7 @@ function PanelPage() {
       setScreenState={setScreenState}
     >
       {view === "saldos" ? <SaldosScreen lang={lang} screenState={screenState} /> : null}
-      {view === "debo" ? <DeboScreen lang={lang} screenState={screenState} /> : null}
+      {view === "debo" ? <DeboScreen lang={lang} screenState={screenState} openProveedor={openProveedor} /> : null}
       {view === "cobro" ? (
         <CobroScreen lang={lang} screenState={screenState} openCliente={openCliente} />
       ) : null}
@@ -118,6 +124,14 @@ function PanelPage() {
           screenState={screenState}
           clienteId={clienteId}
           back={() => setView("cobro")}
+        />
+      ) : null}
+      {view === "proveedor" ? (
+        <ProveedorScreen
+          lang={lang}
+          screenState={screenState}
+          cxpId={proveedorId}
+          back={() => setView("debo")}
         />
       ) : null}
       {view === "utilidad" ? <UtilidadScreen lang={lang} screenState={screenState} /> : null}

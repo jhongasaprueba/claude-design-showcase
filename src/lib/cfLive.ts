@@ -25,6 +25,7 @@ export type CFLive = {
   cxp: any[];
   cxc: any[];
   clientes: Record<string, any>;
+  proveedores: Record<string, any>;
   utilidad: number;
   utilidadMensual: any[];
   canales: any[];
@@ -137,8 +138,12 @@ export async function loadLive(): Promise<CFLive> {
   });
 
   // ---------- Lo que debo ----------
+  const abonosPorCxp = new Map<number, any[]>();
   const pagadoPorCxp = new Map<number, number>();
   abonosProv.forEach((a) => {
+    const list = abonosPorCxp.get(a.cxp_id) || [];
+    list.push(a);
+    abonosPorCxp.set(a.cxp_id, list);
     pagadoPorCxp.set(a.cxp_id, (pagadoPorCxp.get(a.cxp_id) || 0) + Number(a.monto || 0));
   });
   const cxpRows = cxp
@@ -155,6 +160,42 @@ export async function loadLive(): Promise<CFLive> {
       };
     })
     .filter((r) => r.monto > 0.0001);
+
+  // ---------- Detalle por deuda (CxP) ----------
+  const proveedores: Record<string, any> = {};
+  cxp.forEach((c) => {
+    const list = (abonosPorCxp.get(c.id) || []).slice().sort((a, b) =>
+      String(a.fecha_pago).localeCompare(String(b.fecha_pago)),
+    );
+    const ultimo = list[list.length - 1];
+    const tipoTxt = String(c.tipo_deuda || "").toLowerCase();
+    proveedores[String(c.id)] = {
+      tercero: nombre.get(c.tercero_id) || c.codigo || "—",
+      tipo: tipoTxt.includes("proveedor") ? "prov" : "transito",
+      tipoTxt: c.tipo_deuda || "",
+      cur: curOf(c.moneda),
+      total: Number(c.monto || 0),
+      ultimoAbono: ultimo ? fmtDay(ultimo.fecha_pago) : "—",
+      movs: [
+        {
+          id: "c" + c.id,
+          concepto: "Deuda " + (c.codigo || c.id),
+          conceptoEn: "Debt " + (c.codigo || c.id),
+          fecha: fmtDay(c.fecha_generacion),
+          monto: Number(c.monto || 0),
+          tipo: "cargo",
+        },
+        ...list.map((a) => ({
+          id: "a" + a.id,
+          concepto: "Abono " + (a.codigo || ""),
+          conceptoEn: "Payment " + (a.codigo || ""),
+          fecha: fmtDay(a.fecha_pago),
+          monto: Number(a.monto || 0),
+          tipo: "abono",
+        })),
+      ],
+    };
+  });
 
   // ---------- Utilidad ----------
   const activas = operaciones.filter(
@@ -205,6 +246,7 @@ export async function loadLive(): Promise<CFLive> {
     cxp: cxpRows,
     cxc: cxcRows,
     clientes,
+    proveedores,
     utilidad,
     utilidadMensual,
     canales,

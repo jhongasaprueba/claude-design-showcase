@@ -16,6 +16,9 @@ export const CFData: any = {
       detalle: "Detalle del cliente", volver: "Volver", verDetalle: "Ver detalle",
       histCliente: "Historial de facturas y abonos", resumenCliente: "Resumen del cliente",
       facturado: "Total facturado", promedioPago: "Paga en promedio", ultimoAbono: "Último abono",
+      detalleProv: "Detalle de la deuda", resumenProv: "Resumen de la deuda",
+      histProv: "Historial de la deuda y pagos", deudaTotal: "Monto de la deuda",
+      pagado: "Pagado", ultimoPago: "Último pago",
       cols2: { concepto: "Concepto", fecha: "Fecha", mes: "Mes", ingresos: "Ingresos", gastos: "Gastos", utilidad: "Utilidad", canal: "Canal", parte: "Parte" },
       cols: { tercero: "\u00a0 \u00a0 \u00a0 TERCERO", tipo: "Tipo de deuda", cliente: "Cliente", moneda: "Moneda", monto: "Monto", desde: "Desde", total: "Monto total", abonado: "Abonado", saldo: "Saldo pendiente", estado: "Estado" },
       states: { pend: "Pendiente", parcial: "Parcial", pagado: "Pagado" },
@@ -46,6 +49,9 @@ export const CFData: any = {
       detalle: "Client detail", volver: "Back", verDetalle: "View detail",
       histCliente: "Invoice and payment history", resumenCliente: "Client summary",
       facturado: "Total invoiced", promedioPago: "Average payment", ultimoAbono: "Last payment",
+      detalleProv: "Debt detail", resumenProv: "Debt summary",
+      histProv: "Debt and payment history", deudaTotal: "Debt amount",
+      pagado: "Paid", ultimoPago: "Last payment",
       cols2: { concepto: "Concept", fecha: "Date", mes: "Month", ingresos: "Income", gastos: "Expenses", utilidad: "Profit", canal: "Channel", parte: "Share" },
       cols: { tercero: "Owed to", tipo: "Debt type", cliente: "Client", moneda: "Currency", monto: "Amount", desde: "Since", total: "Total", abonado: "Paid in", saldo: "Outstanding", estado: "Status" },
       states: { pend: "Pending", parcial: "Partial", pagado: "Paid" },
@@ -143,6 +149,34 @@ export const CFData: any = {
         { id: 1, concepto: "Factura 0444", conceptoEn: "Invoice 0444", fecha: "30 ago", monto: 5200000, tipo: "cargo" },
         { id: 2, concepto: "Factura 0402", conceptoEn: "Invoice 0402", fecha: "18 jul", monto: 4100000, tipo: "cargo" },
         { id: 3, concepto: "Abono factura 0402", conceptoEn: "Payment on 0402", fecha: "12 ago", monto: 4100000, tipo: "abono" }
+      ]
+    }
+  },
+  // Per-debt detail (CxP), keyed by the CxP row id.
+  proveedores: {
+    1: {
+      tercero: "Proveedor Andrés M.", tipo: "prov", cur: "USDT", total: 7200.00, ultimoAbono: "04 sep",
+      movs: [
+        { id: "c1", concepto: "Deuda PRV-011", conceptoEn: "Debt PRV-011", fecha: "02 sep", monto: 7200.00, tipo: "cargo" },
+        { id: "a1", concepto: "Abono ABP-031", conceptoEn: "Payment ABP-031", fecha: "04 sep", monto: 2000.00, tipo: "abono" }
+      ]
+    },
+    2: {
+      tercero: "Procesador PagoRed", tipo: "transito", cur: "COP", total: 6400000, ultimoAbono: "—",
+      movs: [
+        { id: "c2", concepto: "Deuda TRN-008", conceptoEn: "Debt TRN-008", fecha: "04 sep", monto: 6400000, tipo: "cargo" }
+      ]
+    },
+    3: {
+      tercero: "Proveedor Lina T.", tipo: "prov", cur: "USDT", total: 1850.40, ultimoAbono: "—",
+      movs: [
+        { id: "c3", concepto: "Deuda PRV-012", conceptoEn: "Debt PRV-012", fecha: "05 sep", monto: 1850.40, tipo: "cargo" }
+      ]
+    },
+    4: {
+      tercero: "Procesador Kuvo", tipo: "transito", cur: "COP", total: 2100000, ultimoAbono: "—",
+      movs: [
+        { id: "c4", concepto: "Deuda TRN-009", conceptoEn: "Debt TRN-009", fecha: "06 sep", monto: 2100000, tipo: "cargo" }
       ]
     }
   },

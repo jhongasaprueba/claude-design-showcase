@@ -23,6 +23,7 @@ export function subscribeCFChanges(
     onStatus?.("off");
     return () => {};
   }
+  const sb = extSupabase;
 
   let timer: ReturnType<typeof setTimeout> | null = null;
   const schedule = () => {
@@ -35,7 +36,7 @@ export function subscribeCFChanges(
 
   onStatus?.("connecting");
 
-  let channel: RealtimeChannel = extSupabase.channel("cf-panel-changes");
+  let channel: RealtimeChannel = sb.channel("cf-panel-changes");
   for (const table of CF_TABLES) {
     channel = channel.on(
       "postgres_changes",
@@ -51,6 +52,6 @@ export function subscribeCFChanges(
 
   return () => {
     if (timer) clearTimeout(timer);
-    extSupabase.removeChannel(channel);
+    sb.removeChannel(channel);
   };
 }
