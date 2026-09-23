@@ -1,7 +1,7 @@
 import React from "react";
 import { CFData } from "../data";
 import { ScreenFrame } from "./ScreenFrame.jsx";
-import { Card, DataTable, ContactCell, MoneyFigure, Badge, Icon } from "../index.js";
+import { Card, DataTable, ContactCell, MoneyFigure, Badge, Icon, IconButton } from "../index.js";
 
 export function TotalsRow({ totals, role, label }) {
   const entries = Object.keys(totals);
@@ -19,7 +19,7 @@ export function TotalsRow({ totals, role, label }) {
   );
 }
 
-export function DeboScreen({ lang, screenState }) {
+export function DeboScreen({ lang, screenState, openProveedor }) {
   const D = CFData, t = D.t[lang];
   const rows = D.cxp;
   const totals = D.totals(rows, "monto");
@@ -30,12 +30,13 @@ export function DeboScreen({ lang, screenState }) {
       emptyBody={lang === "es" ? "Cuando el bot registre una compra a crédito o un pago en tránsito, aparecerá acá." : "Credit purchases and payments in transit recorded by the bot show up here."}>
       <TotalsRow totals={totals} role="payable" label={t.debe} />
       <Card padding="md" style={{ marginTop: "var(--grid-gap)" }}>
-        <DataTable rows={rows} columns={[
+        <DataTable rows={rows} onRowClick={r => openProveedor(r.id)} columns={[
           { key: "tercero", header: t.cols.tercero, render: r => <ContactCell name={r.tercero} note={r.desde} tone="neutral" /> },
           { key: "tipo", header: t.cols.tipo, render: r => <Badge tone={r.tipo === "prov" ? "neutral" : "warning"}>{t.types[r.tipo]}</Badge> },
           { key: "cur", header: t.cols.moneda, render: r => <span className="cf-overline">{r.cur}</span> },
           { key: "desde", header: t.cols.desde, render: r => <span style={{ color: "var(--text-muted)" }}>{r.desde}</span> },
-          { key: "monto", header: t.cols.monto, align: "right", render: r => <MoneyFigure value={r.monto} currency={r.cur} role="payable" size="sm" showCode /> }
+          { key: "monto", header: t.cols.monto, align: "right", render: r => <MoneyFigure value={r.monto} currency={r.cur} role="payable" size="sm" showCode /> },
+          { key: "go", header: "", align: "right", width: "48px", render: () => <IconButton icon={<Icon name="chevron-right" size={15} />} label={t.verDetalle} variant="quiet" size="sm" /> }
         ]} />
       </Card>
     </ScreenFrame>
